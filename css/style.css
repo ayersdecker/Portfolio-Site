@@ -9,7 +9,7 @@ body {
 .overbox-title {
     background-color: #20444545;
     border: 1px solid rgba(0, 255, 255, 0);
-    font-weight: bold;
+    font-size: 40px;
     border-radius: 5px;
     margin-top: 5%;
     margin-left: 5%;
