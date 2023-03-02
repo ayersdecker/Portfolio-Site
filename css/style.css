@@ -6,14 +6,6 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-.overbox-title {
-    background-color: #20444545;
-    border: 1px solid rgba(0, 255, 255, 0);
-    border-radius: 5px;
-    margin-top: 5%;
-    margin-left: 5%;
-    margin-right: 5%;
-}
 
 .overbox {
     background-color: #20444545;
