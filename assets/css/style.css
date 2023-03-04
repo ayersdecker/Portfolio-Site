@@ -1,32 +1,83 @@
 /* Decker Ayers / March 2023 */ 
+:root {
+    font-size: 16px;
+    font-family: 'Open Sans';
+    --text-primary: #b6b6b6;
+    --text-secondary: #ececec;
+}
+
 
 body {
-    background-image: linear-gradient(to right,#B5FFE9, #CEABB1);
+    background-image: linear-gradient(to right,#41a1be, #ebabb5);
     background-size: 100%;
     font-family: 'Roboto', sans-serif;
 }
 
+ul {
+    list-style-type: none;
+    display: grid; 
+    column-gap: 5px; 
+    grid-template-columns: auto auto auto; 
+    grid-template-rows: auto;
+}
+
+li a {
+    text-decoration: none;
+    text-decoration-line: none;
+    font-size: 1.25em;
+    
+}
+li a:hover {
+    text-decoration: none;
+    text-decoration-line: none;
+    background-image: linear-gradient(to right, #ffd1f5, #62faff);
+    text-shadow: rgba(0, 0, 0, 0.486) 0.1em 0.1em 0.2em;
+}
+li {
+    text-align: center;
+}
+
+
+
+
 
 .overbox {
-    background-color: #20444545;
-    border: 1px solid rgba(0, 255, 255, 0);
+    background-color: #20444531;
+    border: 3px solid #03f7ff6b;
     border-radius: 5px;
-    margin-top: 5%;
+    padding: 2px;
+    margin-top: 10px;
     margin-left: 5%;
     margin-right: 5%;
+    box-shadow: rgba(0, 0, 0, 0.329) 0px 0px 5px;
 
 }
 .gradient-text {
     margin-left: 5%;
     margin-right: 5%;
     background-color: #FFFFFF;
-    background-image: linear-gradient(to right, #B5FFE9, #d7f3ea);
+    background-image: linear-gradient(to right, #83e6ff, #f5d6ff);
     background-size: 100%;
     -webkit-background-clip: text;
     -moz-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent; 
     -moz-text-fill-color: transparent;
+    transition: background-color 0.5s, transform 2s;
+
+}
+.gradient-text-reverse {
+    margin-left: 5%;
+    margin-right: 5%;
+    background-color: #FFFFFF;
+    background-image: linear-gradient(to right,#edbeff, #8efff9 );
+    background-size: 100%;
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-text-fill-color: transparent;
+    transition: background-color 0.5s, transform 2s;
 
 }
 
