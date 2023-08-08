@@ -6,7 +6,8 @@ body {
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, #667eea, #764ba2);
     display: flex;
-    align-items: flex-start; /* Align items to the top of the flex container */
+    align-items: center;
+    justify-content: center;
     min-height: 100vh;
 }
 
@@ -19,7 +20,7 @@ body {
     font-size: 3rem;
     color: #fff;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
-    margin-right: 50px; /* Add right margin to separate from the blog section */
+    margin-bottom: 20px; /* Add margin at the bottom */
 }
 
 .blog-section {
@@ -27,11 +28,12 @@ body {
     padding: 20px;
     background-color: rgba(255, 255, 255, 0.9);
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-    flex: 1; /* Allow the blog section to expand and fill the remaining space */
 }
 
 .blog-post {
     margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 .blog-post h2 {
@@ -43,7 +45,9 @@ body {
     font-size: 1rem;
     color: #666;
 }
+
 .read-button {
+    align-self: flex-end; /* Align button to the right within each post */
     margin-top: 10px;
     padding: 5px 10px;
     background-color: #333;
