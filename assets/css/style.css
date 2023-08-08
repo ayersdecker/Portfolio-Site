@@ -13,13 +13,12 @@ body {
 
 .container {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 40px; /* Increase the margin */
 }
 
 #name {
     font-size: 3rem;
     color: #333;
-    margin-right: 20px;
 }
 
 .blog-section {
@@ -27,6 +26,7 @@ body {
     padding: 20px;
     background-color: #fff;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    margin-top: 20px; /* Add margin to separate from the name */
 }
 
 .blog-post {
