@@ -1,46 +1,21 @@
 /* Decker Ayers / March 2023 */ 
-:root {
-    font-size: 16px;
-    font-family: 'Open Sans';
-    --text-primary: #b6b6b6;
-    --text-secondary: #ececec;
-}
-
-
 body {
-    background-image: linear-gradient(to right,#41a1be, #ebabb5);
-    background-size: 100%;
-    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
-
-ul {
-    list-style-type: none;
-    display: grid; 
-    column-gap: 5px; 
-    grid-template-columns: auto auto auto; 
-    grid-template-rows: auto;
-}
-
-li a {
-    text-decoration: none;
-    text-decoration-line: none;
-    font-size: 1.25em;
-    
-}
-li a:hover {
-    text-decoration: none;
-    text-decoration-line: none;
-    background-image: linear-gradient(to right, #ffd1f5, #62faff);
-    text-shadow: rgba(0, 0, 0, 0.486) 0.1em 0.1em 0.2em;
-}
-li {
+.container {
     text-align: center;
 }
-
-
-
-
-
+#name {
+    font-size: 3rem;
+    color: #333;
+}
 .overbox {
     background-color: #20444531;
     border: 3px solid #03f7ff6b;
@@ -64,7 +39,6 @@ li {
     -webkit-text-fill-color: transparent; 
     -moz-text-fill-color: transparent;
     transition: background-color 0.5s, transform 2s;
-
 }
 .gradient-text-reverse {
     margin-left: 5%;
@@ -78,27 +52,22 @@ li {
     -webkit-text-fill-color: transparent; 
     -moz-text-fill-color: transparent;
     transition: background-color 0.5s, transform 2s;
-
 }
-
 .bluehead {
     font-weight: bold;
     color: #B5FFE9;
     font-family: 'Roboto', sans-serif;
 }
-
 .grayhead {
     font-weight: bold;
     color: #C5E0D8;
     font-family: 'Roboto', sans-serif;
 }
-
 .lilachead {
     font-weight: bold;
     color: #C9C9C9;
     font-family: 'Roboto', sans-serif;
 }
-
 .rosehead {
     font-weight: bold;
     color: #CEABB1;
