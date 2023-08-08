@@ -32,9 +32,6 @@ body {
 
 .blog-post {
     margin-bottom: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
 .blog-post h2 {
@@ -48,7 +45,6 @@ body {
 }
 .read-button {
     margin-top: 10px;
-    margin-left: auto;
     padding: 5px 10px;
     background-color: #333;
     color: #fff;
