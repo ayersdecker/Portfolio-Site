@@ -59,4 +59,8 @@ body {
 
 .read-button:hover {
     background-color: #555;
+    transition-duration: 0.4s;
+}
+.read-button:hover{
+    background-color: #000;
 }
