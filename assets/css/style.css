@@ -131,6 +131,7 @@ body {
 .back-button a {
     display: inline-block;
     padding: 8px 15px;
+    margin-bottom: 40px;
     background-color: #333;
     color: #fff;
     text-decoration: none;
