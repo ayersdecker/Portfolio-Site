@@ -118,6 +118,8 @@ body {
 }
 .back-button {
     margin-top: 20px;
+    display: flex;
+    align-items: center;
 }
 
 .back-button a {
@@ -129,6 +131,11 @@ body {
     border-radius: 5px;
     font-size: 1rem;
     transition: background-color 0.3s ease;
+    margin-right: 10px;
+}
+
+.back-button a:first-child {
+    margin-left: auto; 
 }
 
 .back-button a:hover {
