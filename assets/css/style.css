@@ -9,6 +9,10 @@ body {
     align-items: center;
     min-height: 100vh;
 }
+.tab {
+    display: inline-block;
+    margin-left: 4em;
+}
 
 .container {
     text-align: center;
