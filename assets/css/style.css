@@ -64,3 +64,54 @@ body {
 .read-button:hover{
     background-color: #000;
 }
+
+.about-section {
+    margin-top: 40px;
+    width: 80%;
+    max-width: 800px;
+}
+.contact-form {
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.contact-form h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.contact-form form label {
+    display: block;
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #666;
+}
+
+.contact-form form input,
+.contact-form form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.contact-form .submit-button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact-form .submit-button:hover {
+    background-color: #555;
+    transition-duration: 0.4s;
+}
