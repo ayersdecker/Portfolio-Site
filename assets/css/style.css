@@ -116,10 +116,11 @@ body {
     background-color: #555;
     transition-duration: 0.4s;
 }
+
 .back-button {
-    margin-top: 20px;
     display: flex;
     align-items: center;
+    margin-top: 20px;
 }
 
 .back-button a {
@@ -131,11 +132,12 @@ body {
     border-radius: 5px;
     font-size: 1rem;
     transition: background-color 0.3s ease;
-    margin-right: 10px;
+    margin-right: 10px; /* Add some space between the buttons */
 }
 
 .back-button a:first-child {
-    margin-left: auto; 
+    margin-right: auto; /* Push the first button to the left */
+    margin-left: 0; /* Reset left margin */
 }
 
 .back-button a:hover {
