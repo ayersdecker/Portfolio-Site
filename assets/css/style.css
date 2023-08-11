@@ -116,3 +116,22 @@ body {
     background-color: #555;
     transition-duration: 0.4s;
 }
+.back-button {
+    margin-top: 20px;
+}
+
+.back-button a {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #333;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.back-button a:hover {
+    background-color: #555;
+    transition-duration: 0.4s;
+}
