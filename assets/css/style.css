@@ -125,6 +125,7 @@ body {
     display: flex;
     align-items: left;
     margin-top: 20px;
+    margin-bottom: 40px;
 }
 
 .back-button a {
