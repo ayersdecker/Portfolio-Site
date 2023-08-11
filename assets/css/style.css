@@ -119,7 +119,7 @@ body {
 
 .back-button {
     display: flex;
-    align-items: center;
+    align-items: left;
     margin-top: 20px;
 }
 
