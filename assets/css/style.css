@@ -163,7 +163,7 @@ body {
     height: 100px;
   }
 img {
-    width: 17.5%;
+    height: 100px;
 }
 
   @media (max-width: 768px) {
