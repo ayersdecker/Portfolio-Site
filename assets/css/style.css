@@ -162,10 +162,16 @@ body {
     align-items: center;
     height: 100px;
   }
+img {
+    width: 17.5%;
+}
 
   @media (max-width: 768px) {
     .blog-section {
         width: 100%;
       max-width: 100%;
+    }
+    img {
+        width: 50%;
     }
   }
