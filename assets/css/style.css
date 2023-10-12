@@ -26,8 +26,8 @@ body {
 
 .blog-section {
     margin-top: 40px;
-    width: 80%;
-    max-width: 800px;
+    width: 90%;
+    max-width: 1000px;
 }
 
 .blog-post {
@@ -155,4 +155,11 @@ body {
     justify-content: center;
     align-items: center;
     height: 100px;
+  }
+
+  @media (max-width: 768px) {
+    .blog-section {
+        width: 100%;
+      max-width: 100%;
+    }
   }
