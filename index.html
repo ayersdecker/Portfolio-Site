@@ -3,124 +3,47 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Decker Ayers – Developer &amp; Creative Technologist</title>
+  <title>Decker Ayers</title>
   <meta name="google-adsense-account" content="ca-pub-2129408761521847">
   <link rel="stylesheet" href="assets/css/style.css" />
   <script defer src="assets/scripts/base.js"></script>
 </head>
 <body>
-  <!-- Animated background circles -->
-  <div class="background-circles">
-    <div class="circle cyan"></div>
-    <div class="circle purple reverse"></div>
-    <div class="circle pink"></div>
-    <div class="circle orange reverse"></div>
-  </div>
-
-  <!-- Mouse follower -->
-  <div id="cursor"></div>
-
-  <!-- Navigation -->
-  <nav class="nav">
-    <div class="glass-card nav-container">
-      <div class="nav-links">
-        <button onclick="scrollToSection('home')" class="glass-button">Home</button>
-        <button onclick="scrollToSection('about')" class="glass-button">About</button>
-        <button onclick="scrollToSection('projects')" class="glass-button">Projects</button>
-        <button onclick="scrollToSection('artworks')" class="glass-button">Artworks</button>
-        <button onclick="scrollToSection('contact')" class="glass-button">Contact</button>
+  <main>
+    <section class="section" id="home">
+      <h1>Decker Ayers</h1>
+      <h3>mobile application developer</h3>
+    </section>
+    <section class="section" id="about">
+      <h2>About Me</h2>
+      <p>I'm Decker Ayers — a developer, father of three, and lifelong problem solver with a passion for building accessible, meaningful technology. As an Ex-Boyscout and someone living with Usher syndrome, I’ve always embraced challenges with resilience, creativity, and a commitment to helping others.</p>
+      <p>My journey into tech started with a simple curiosity and grew into a career focused on turning ideas into polished digital experiences. From mobile apps to full-scale web platforms, I specialize in crafting intuitive, user-focused solutions using modern tools and frameworks.</p>
+      <p>I believe technology should empower everyone. Whether I'm mentoring, contributing to open source, or exploring new ideas, I'm driven by a desire to innovate with purpose — especially in ways that enhance inclusion and usability.</p>
+      <p>When I'm not coding, you'll find me hiking in Upstate New York, playing video games with my kids, or listening to some Lofi channel while I work on personal projects.</p>
+      <div style="display:flex;align-items:center;gap:1.25rem;margin-top:1.5rem;">
+        <a href="assets/files/Decker%20Ayers%20Resume.docx" target="_blank">View my resume</a>
       </div>
-    </div>
-  </nav>
-
-  <!-- Hero Section -->
-  <section id="home" class="section hero">
-    <div class="glass-card hero-card fade-in">
-      <h1 class="gradient-text pulse-glow">Decker Ayers</h1>
-      <p class="subhead">Developer &amp; Creative Technologist</p>
-      <div class="hero-buttons">
-        <button onclick="scrollToSection('projects')" class="glass-button glow">
-          View Projects
-        </button>
-        <a href="https://www.deckerayers.com/assets/files/Decker%20Ayers%20Resume.docx" download class="glass-button glow">
-          Download Resume
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- About Section -->
-  <section id="about" class="section fade-in">
-    <div class="glass-card section-card">
-      <h2 class="gradient-text section-title">About Me</h2>
-      <div class="section-content">
-        <p>I'm a passionate developer who loves creating innovative solutions and bringing ideas to life through code. With expertise in modern web technologies, I build user‑centric applications that make a difference.</p>
-        <p>When I'm not coding, you'll find me exploring new technologies, contributing to open source, and continuously learning to stay at the forefront of tech.</p>
-        <div class="skills">
-          <span class="glass-button">JavaScript</span>
-          <span class="glass-button">TypeScript</span>
-          <span class="glass-button">React</span>
-          <span class="glass-button">Node.js</span>
-          <span class="glass-button">Python</span>
-          <span class="glass-button">CSS</span>
-          <span class="glass-button">HTML</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Projects Section -->
-  <section id="projects" class="section fade-in">
-    <div class="glass-card section-card">
-      <h2 class="gradient-text section-title">Projects</h2>
-      <p class="section-subtitle">Explore my latest work and creative projects on GitHub</p>
-      <div class="projects-grid">
-        <a href="https://github.com/ayersdecker" target="_blank" class="project-card">
-          <div class="icon">🐙</div>
-          <h3>GitHub Portfolio</h3>
-          <p>All my code projects, contributions, and open‑source work</p>
-        </a>
-        <div class="project-card">
-          <div class="icon">💻</div>
-          <h3>Loficus Loftt</h3>
-          <p>Currently in Development</p>
-        </div>
-        <div class="project-card">
-          <div class="icon">🎨</div>
-          <h3>Creative Projects</h3>
-          <p>Showcase of some of my design works. Coming Soon</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Artworks Section -->
-  <section id="artworks" class="section fade-in">
-    <div class="glass-card section-card">
-      <h2 class="gradient-text section-title">Artworks</h2>
-      <p class="section-subtitle">Digital artworks and visual experiments</p>
-      <div class="carousel">
-        <button id="prev" class="carousel-button">❮</button>
-        <img id="carousel-image" src="art1.jpg" alt="Artwork">
-        <button id="next" class="carousel-button">❯</button>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="section fade-in">
-    <div class="glass-card section-card text-center">
-      <h2 class="gradient-text section-title">Get In Touch</h2>
-      <p>Ready to collaborate on your next project? Let's create something amazing together.</p>
-      <a href="https://www.deckerayers.com/contact" target="_blank" class="glass-button glow">Contact Me</a>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="footer fade-in">
-    <div class="glass-card footer-card">
-      <p>© 2025 Decker Ayers. Built with passion and glass morphism.</p>
-    </div>
-  </footer>
+    </section>
+    <section class="section" id="projects">
+      <h2>Featured Projects</h2>
+      <p>Loficus – Desktop lofi music streaming app. Designed for productivity and relaxation, with a custom UI and curated playlists.</p>
+      <p>TP-Link Cloud Console – A tool that allows users to control TP-Link devices (unofficially) from a simple interface. Built for research and automation.</p>
+      <p>Solve.AI – Mobile app using OpenAI GPT-4 to solve problems and answer questions. Created as a capstone project for college.</p>
+      <p>ReadyWaters – Capstone project providing water weather information for Rochester, NY. Combines real-time data and a user-friendly interface.</p>
+      <p>FlappyTiger – Flappy Bird clone in Unity WebGL. Playable directly in the browser, demonstrating game development and Unity skills.</p>
+      <p>ClearCaptions – Simple website providing live captions for accessibility. Designed to help users with hearing or processing difficulties.</p>
+      <p>ASL.ML – Research project using Google MediaPipe to track pose and hand landmarks for American Sign Language recognition and learning.</p>
+      <p>Drawing – Simple drawing app for creative expression and note-taking, built for ease of use and accessibility.</p>
+    </section>
+    <section class="section" id="contact">
+      <h2>Get In Touch</h2>
+      <p>I'm always open to new opportunities, collaborations, and conversations. Whether you have a project idea, need advice, or just want to say hello, I'd love to hear from you.</p>
+      <p>Feel free to reach out for freelance work, consulting, or to discuss anything tech-related. I value clear communication, creative problem-solving, and building meaningful connections.</p>
+      <p><a href="contact.html">Contact Me</a></p>
+    </section>
+    <footer class="section">
+      <p>© 2025 Decker Ayers</p>
+    </footer>
+  </main>
 </body>
 </html>

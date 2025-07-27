@@ -37,3 +37,21 @@ document.getElementById('next').addEventListener('click', () => {
   current = (current + 1) % images.length;
   carouselImage.src = images[current];
 });
+
+// Scroll event to animate hiker
+window.addEventListener('scroll', function() {
+  const hiker = document.getElementById('hiker');
+  if (!hiker) return;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+  const scrollPos = window.scrollY;
+  const percent = docHeight > 0 ? scrollPos / docHeight : 0;
+  const maxLeft = window.innerWidth - 80; // 80px is hiker width
+  hiker.style.left = (percent * maxLeft) + 'px';
+
+  // Move background image a little left/right as hiker moves
+  const body = document.body;
+  const minPos = 50; // percent (center)
+  const maxShift = 10; // percent (max left shift)
+  const bgPos = (minPos - percent * maxShift);
+  body.style.backgroundPosition = `${bgPos}% center`;
+});
