@@ -1,3 +1,40 @@
+@media (max-width: 600px) {
+  body, main {
+    max-width: 100vw;
+    margin: 20px;
+    padding: 20px;
+  }
+  .section {
+    max-width: 100vw;
+    padding: 1rem 0 0.5rem 0;
+  }
+  h1 {
+    font-size: 2.5rem;
+    margin-top: 1rem;
+    white-space: normal !important;
+    overflow-x: visible;
+  }
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  h3 {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+  p, span, li, .contact-form label {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  .about-photo, .contact-photo {
+    width: 80px !important;
+    max-width: 40vw;
+  }
+  .contact-form {
+    max-width: 100vw;
+    padding: 0 0.5rem;
+  }
+}
 /* styles.css */
 
 /* Minimalistic Zune/Microsoft Phone inspired theme - all text black, no list decorations, lowercase titles */
@@ -11,7 +48,7 @@ body {
   font-family: var(--font-main);
   background: var(--background);
   color: var(--foreground);
-  margin: 0;
+  margin:20px;
   padding: 0;
   min-height: 100vh;
   display: flex;
