@@ -92,6 +92,20 @@ h1 {
   white-space: nowrap;
   overflow-x: visible;
 }
+
+/* Make the homepage title simple and consistent with other section titles */
+h1.simple-title {
+  font-size: 3rem;
+  margin-top: 1.5rem;
+  text-transform: lowercase;
+  letter-spacing: -1px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+@media (max-width: 1440px) {
+  h1.simple-title { font-size: 2.2rem; }
+}
 h2 {
   font-size: 3rem;
 }
