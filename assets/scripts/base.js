@@ -116,12 +116,13 @@ window.addEventListener('scroll', function() {
           pieces.push({
             x: Math.random()*canvas.width,
             y: Math.random()*-canvas.height*0.5,
-            vx: (Math.random()-0.5)*4,
-            vy: Math.random()*3+2,
+            // velocities scaled to 0.25x for slower motion
+            vx: (Math.random()-0.5)*1,
+            vy: Math.random()*0.75+0.5,
             r: Math.random()*6+3,
             color: colors[Math.floor(Math.random()*colors.length)],
             rot: Math.random()*360,
-            vr: (Math.random()-0.5)*8
+            vr: (Math.random()-0.5)*2
           });
         }
       }
@@ -136,7 +137,8 @@ window.addEventListener('scroll', function() {
           const p = pieces[i];
           p.x += p.vx;
           p.y += p.vy;
-          p.vy += 9.8 * dt * 0.6; // gravity
+          // gravity scaled to 0.25x to slow fall
+          p.vy += 9.8 * dt * 0.15; // gravity
           p.rot += p.vr * dt;
 
           ctx.save();
@@ -156,13 +158,6 @@ window.addEventListener('scroll', function() {
       requestAnimationFrame(frame);
     }
 
-    // Remove decorations after 20 seconds to avoid persistent effects
-    setTimeout(() => {
-      banner.classList.add('fade-out');
-      overlay.classList.add('fade-out');
-      // remove from DOM after fade
-      banner.addEventListener('transitionend', () => banner.remove());
-      overlay.addEventListener('transitionend', () => overlay.remove());
-    }, 20000);
+    // Decorations remain persistent until the page is unloaded. If you want a manual close, I can add a dismiss control.
   });
 })();

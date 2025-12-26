@@ -32,7 +32,8 @@ body.ny-2026 {
   background-size: 200% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: shimmer 3s linear infinite;
+  /* slowed to 0.25x speed */
+  animation: shimmer 12s linear infinite;
 }
 
 @keyframes shimmer {
@@ -62,7 +63,8 @@ body.ny-2026 main, body.ny-2026 .section {
   mix-blend-mode: screen;
   /* lower opacity so bright spots don't wash out text */
   opacity: .65;
-  animation: glitter-move 8s linear infinite;
+  /* slowed to 0.25x speed */
+  animation: glitter-move 32s linear infinite;
   background-size: 30px 30px, 50px 50px;
 }
 
@@ -83,7 +85,8 @@ canvas#ny-confetti {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background: linear-gradient(90deg, #fff, #ffd700 40%, #fff 80%);
-  animation: shimmer 3s linear infinite;
+  /* slowed to 0.25x speed */
+  animation: shimmer 12s linear infinite;
   text-transform: uppercase !important;
   letter-spacing: .12em;
   /* reinforce contrast when overlay is behind content */
