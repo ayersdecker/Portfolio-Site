@@ -47,7 +47,7 @@ if (nextBtn && carouselImage) {
 }
 
 // Scroll event to animate hiker
-window.addEventListener('scroll', function() {
+function updateHiker(){
   const hiker = document.getElementById('hiker');
   if (!hiker) return;
   const docHeight = document.documentElement.scrollHeight - window.innerHeight;
@@ -62,102 +62,125 @@ window.addEventListener('scroll', function() {
   const maxShift = 10; // percent (max left shift)
   const bgPos = (minPos - percent * maxShift);
   body.style.backgroundPosition = `${bgPos}% center`;
-});
+}
+window.addEventListener('scroll', updateHiker);
+window.addEventListener('load', updateHiker);
+window.addEventListener('resize', updateHiker);
 
-/* -----------------------------
-   New Year's Eve 2026: overlay + confetti
-   ----------------------------- */
+/* NY confetti/overlay removed — theme simplified to woods & hiking */
+
+/* -------------------
+   Gliding background symbols: boots, kayak, bald eagle, tent, pine, pack, compass, campfire
+   - Decorative only (aria-hidden)
+   - Respects prefers-reduced-motion
+   - Limits concurrent elements for performance
+   ------------------- */
 (function(){
-  // Respect reduced motion
   if (typeof window === 'undefined') return;
-  document.addEventListener('DOMContentLoaded', function(){
-    // Only run on the homepage — detect by presence of the #home section (works when served from a subpath)
-    const isHome = !!document.getElementById('home');
-    if (!isHome) return;
+  const prefersReduce = (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
 
-    // Respect reduced motion but still apply static theme
-    const reduceMotion = (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  // Larger emoji-based icon set (decorative only)
+  const EMOJIS = ['🥾','🛶','🦅','🏕️','🌲','🎒','🧭','🔥','🗺️','⛰️','🌄','🪵','🐾','🥤','🥪','🌿','🚩','⛺','🪶','🪓','🪨','🧦','🌳','🧺','🫗'];
 
-    // Add NY class to body (static styles apply even when reduce-motion is set)
-    document.body.classList.add('ny-2026');
+  // container
+  let container = document.querySelector('.glider-container');
+  if (!container) {
+    container = document.createElement('div');
+    container.className = 'glider-container';
+    container.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(container);
+  }
 
-    // Static NY CSS has been moved into assets/css/ny-2026.css (linked in index.html)
+  if (prefersReduce) return; // do not spawn if user reduces motion
 
-    // Banner
-    const banner = document.createElement('div');
-    banner.className = 'ny-banner';
-    banner.innerHTML = '<span class="shimmer">Happy New Year 2026</span>';
-    document.body.appendChild(banner);
+  let active = 0;
+  const MAX_ACTIVE = 5;
+  const MIN_INTERVAL = 1500; // ms (about 2x more frequent)
+  const MAX_INTERVAL = 4500;
 
-    // Overlay with glitter (canvas added only if animations are allowed)
-    const overlay = document.createElement('div');
-    overlay.className = 'ny-overlay';
-    overlay.innerHTML = '<div class="ny-glitter"></div>' + (reduceMotion ? '' : '<canvas id="ny-confetti"></canvas>');
-    document.body.appendChild(overlay);
+  function rand(min, max){ return Math.random()*(max-min)+min }
 
-    // Add headline shimmer to h1s except the site title in #home or ones marked simple-title
-    document.querySelectorAll('h1').forEach(el => {
-      if (el.classList.contains('simple-title') || el.closest('#home')) return;
-      el.classList.add('ny-headline');
-    });
+  function spawnOne(){
+    if (active >= MAX_ACTIVE) return scheduleNext();
+    active++;
 
-    // Initialize confetti canvas (skipped when reduced-motion is requested)
-    const canvas = document.getElementById('ny-confetti');
-    if (canvas && !reduceMotion) {
-      const ctx = canvas.getContext('2d');
-      function resize(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-      resize(); window.addEventListener('resize', resize);
+    const emoji = EMOJIS[Math.floor(Math.random()*EMOJIS.length)];
+    const el = document.createElement('div');
+    el.className = 'glider';
 
-      const pieces = [];
-      const colors = ['#ffd700','#ff7aa2','#7ae7ff','#ffffff','#ffecb3'];
+    // choose direction
+    const dir = Math.random() > 0.5 ? 'right' : 'left';
+    el.classList.add(dir === 'right' ? 'glide-right' : 'glide-left');
 
-      function spawn(count=30){
-        for (let i=0;i<count;i++){
-          pieces.push({
-            x: Math.random()*canvas.width,
-            y: Math.random()*-canvas.height*0.5,
-            // velocities scaled to 0.25x for slower motion
-            vx: (Math.random()-0.5)*1,
-            vy: Math.random()*0.75+0.5,
-            r: Math.random()*6+3,
-            color: colors[Math.floor(Math.random()*colors.length)],
-            rot: Math.random()*360,
-            vr: (Math.random()-0.5)*2
-          });
-        }
-      }
+    // random vertical position (use CSS variable for smoothness)
+    const topPct = rand(8, 70); // avoid top nav/very bottom
+    el.style.top = topPct + 'vh';
+    el.style.setProperty('--start-y', (topPct + 'vh'));
 
-      // start with a burst
-      spawn(140);
-      let last = performance.now();
-      function frame(now){
-        const dt = (now - last)/1000; last = now;
-        ctx.clearRect(0,0,canvas.width,canvas.height);
-        for (let i = pieces.length - 1; i >= 0; i--) {
-          const p = pieces[i];
-          p.x += p.vx;
-          p.y += p.vy;
-          // gravity scaled to 0.25x to slow fall
-          p.vy += 9.8 * dt * 0.15; // gravity
-          p.rot += p.vr * dt;
+    // subtle vertical drift
+    const drift = (Math.random()-0.5)*24; // px
+    el.style.setProperty('--drift', drift + 'px');
 
-          ctx.save();
-          ctx.translate(p.x, p.y);
-          ctx.rotate(p.rot);
-          ctx.fillStyle = p.color;
-          ctx.fillRect(-p.r/2, -p.r/2, p.r, p.r);
-          ctx.restore();
+    // random duration
+    const duration = Math.round(rand(10, 18)) + 's';
+    el.style.setProperty('--duration', duration);
 
-          if (p.y > canvas.height + 50) pieces.splice(i, 1);
-        }
+    // insert emoji
+    el.textContent = emoji;
+    el.classList.add('glider-emoji');
+    // random size to introduce subtle variety
+    el.style.setProperty('--size', Math.round(rand(36, 88)) + 'px');
 
-        // keep a steady stream briefly
-        if (pieces.length < 80) spawn(28);
-        requestAnimationFrame(frame);
-      }
-      requestAnimationFrame(frame);
+    // append and remove after animation
+    container.appendChild(el);
+
+    function cleanup(){
+      el.removeEventListener('animationend', cleanup);
+      if (el.parentNode) el.parentNode.removeChild(el);
+      active = Math.max(0, active-1);
+    }
+    el.addEventListener('animationend', cleanup);
+
+    scheduleNext();
+  }
+
+  function scheduleNext(){
+    const delay = Math.round(rand(MIN_INTERVAL, MAX_INTERVAL));
+    setTimeout(spawnOne, delay);
+  }
+
+  // start a small initial burst (faster)
+  setTimeout(spawnOne, Math.round(rand(400, 1200)));
+  // maintain periodic spawns
+  scheduleNext();
+
+  // cleanup when page hidden
+  document.addEventListener('visibilitychange', function(){
+    if (document.hidden) {
+      // remove existing gliders
+      document.querySelectorAll('.glider').forEach(n => n.remove());
+      active = 0;
+    }
+  });
+
+  // Mountains parallax (small, subtle) — disabled when reduced motion is requested
+  (function(){
+    const prefersReduce = (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    const mountains = document.querySelector('.mountain-bg');
+    if (!mountains || prefersReduce) return;
+
+    function updateMountains(){
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPos = window.scrollY;
+      const percent = docHeight > 0 ? scrollPos / docHeight : 0;
+      // move mountains up slightly as user scrolls down (max 20px)
+      const maxShift = 20; // px
+      const shift = -percent * maxShift;
+      mountains.style.transform = `translateY(${shift}px)`;
     }
 
-    // Decorations remain persistent until the page is unloaded. If you want a manual close, I can add a dismiss control.
-  });
+    window.addEventListener('scroll', updateMountains);
+    window.addEventListener('load', updateMountains);
+    window.addEventListener('resize', updateMountains);
+  })();
 })();

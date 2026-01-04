@@ -6,10 +6,34 @@
   <title>Decker Ayers</title>
   <meta name="google-adsense-account" content="ca-pub-2129408761521847">
   <link rel="stylesheet" href="assets/css/style.css" />
-  <link rel="stylesheet" href="assets/css/ny-2026.css" />
+  <link rel="stylesheet" href="assets/css/woods.css" />
   <script defer src="assets/scripts/base.js"></script>
 </head>
-<body class="ny-2026">
+<body>
+  <div class="mountain-bg" aria-hidden="true" title="Mountainscape">
+    <!-- Layered mountains SVG (subtle, decorative) -->
+    <svg viewBox="0 0 1200 320" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg" focusable="false" aria-hidden="true">
+      <defs>
+        <linearGradient id="m1" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0%" stop-color="#eaf5ea" />
+          <stop offset="100%" stop-color="#dfeee0" />
+        </linearGradient>
+        <linearGradient id="m2" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0%" stop-color="#dfeee0" />
+          <stop offset="100%" stop-color="#cfe6d1" />
+        </linearGradient>
+      </defs>
+      <g class="mountain-layer layer-back" transform="translate(0,30)">
+        <path d="M0,220 C150,120 350,260 520,180 C690,100 880,220 1200,160 L1200,320 L0,320 Z" fill="url(#m1)" opacity="0.9"/>
+      </g>
+      <g class="mountain-layer layer-mid" transform="translate(0,50)">
+        <path d="M0,240 C120,160 300,200 460,140 C620,80 820,200 1200,140 L1200,320 L0,320 Z" fill="url(#m2)" opacity="0.85"/>
+      </g>
+      <g class="mountain-layer layer-front" transform="translate(0,80)">
+        <path d="M0,280 C160,200 320,240 520,180 C720,120 920,240 1200,180 L1200,320 L0,320 Z" fill="rgba(47,111,68,0.06)" opacity="0.95"/>
+      </g>
+    </svg>
+  </div>
   <main>
     <section class="section" id="home">
       <h1>Decker Ayers</h1>
@@ -43,8 +67,9 @@
       <p><a href="contact.html">Contact Me</a></p>
     </section>
     <footer class="section">
-      <p>© 2026 🍍 Decker Ayers</p>
+      <p>© 2026 Decker Ayers</p>
     </footer>
   </main>
+  <div id="hiker" aria-hidden="true" title="Hiker" role="presentation">🥾</div>
 </body>
 </html>

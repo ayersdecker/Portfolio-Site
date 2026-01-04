@@ -84,8 +84,9 @@ h1, h2, h3 {
   letter-spacing: -1px;
   margin-bottom: 1.5rem;
   color: var(--accent);
-  text-transform: lowercase;
-}
+  text-transform: capitalize;
+  text-shadow: 0 3px 10px rgba(0,0,0,0.08);
+} 
 h1 {
   font-size: 6rem;
   margin-top: 2rem;
@@ -97,11 +98,12 @@ h1 {
 h1.simple-title {
   font-size: 3rem;
   margin-top: 1.5rem;
-  text-transform: lowercase;
+  text-transform: capitalize;
   letter-spacing: -1px;
   font-weight: 700;
   color: var(--accent);
-}
+  text-shadow: 0 3px 10px rgba(0,0,0,0.06);
+} 
 
 @media (max-width: 1440px) {
   h1.simple-title { font-size: 2.2rem; }

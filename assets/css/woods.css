@@ -1,0 +1,147 @@
+/* Woods & Hiking theme — simple, clean, professional */
+:root {
+  --background: linear-gradient(180deg, #f6fbf6 0%, #eef6ef 60%, #e6efe6 100%);
+  --foreground: #17321f; /* deep forest green */
+  --accent: #2f6f44; /* primary accent */
+  --muted: #6b5b3d; /* earthy brown/olive */
+  --texture: rgba(0,0,0,0.02);
+  --font-main: 'Georgia', 'Times New Roman', serif;
+}
+
+/* Subtle paper texture using multiple radial gradients */
+html, body { min-height: 100%; }
+html {
+  background: var(--background);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+body {
+  background: transparent; /* let html draw the gradient */
+  color: var(--foreground);
+  background-image: radial-gradient(circle at 10% 10%, rgba(45,79,55,0.02) 0 1px, transparent 2px),
+                    radial-gradient(circle at 70% 40%, rgba(45,79,55,0.02) 0 1px, transparent 2px);
+  background-size: 24px 24px, 40px 40px;
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+/* fallback solid color if gradients fail */
+html { background-color: #eef6ef; }
+
+main { max-width: 680px; position: relative; z-index: 2; }
+
+/* Mountainscape */
+.mountain-bg {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 38vh;
+  max-height: 320px;
+  pointer-events: none;
+  z-index: 0; /* behind gliders and content */
+  opacity: 1;
+  transition: transform 0.45s ease-out;
+}
+.mountain-bg svg { width: 100%; height: 100%; display: block; }
+.mountain-bg .mountain-layer path { transition: opacity 0.4s ease, transform 0.45s ease-out; }
+
+/* Keep glider layer above mountains */
+.glider-container { z-index: 1; }
+
+@media (max-width: 720px) {
+  .mountain-bg { height: 28vh; max-height: 220px; }
+}
+
+/* Make the front mountain more visible */
+.mountain-bg .mountain-layer.layer-front path { fill: rgba(47,111,68,0.16) !important; opacity: 0.95; }
+
+@media (prefers-reduced-motion: reduce) {
+  .mountain-bg { transition: none; }
+} 
+
+/* Headings */
+h1, h2, h3 { color: var(--accent); font-family: var(--font-main); text-transform: capitalize; text-shadow: 0 3px 10px rgba(0,0,0,0.08); }
+h1 { font-size: 3.5rem; font-weight:700; letter-spacing: -1px; }
+.h1.simple-title { font-size: 2.4rem }
+
+p, li { color: rgba(23,50,31,0.95); }
+a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; }
+a:hover { border-bottom-color: var(--accent); }
+
+/* Hiker element: subtle, unobtrusive, professional */
+#hiker {
+  position: fixed;
+  bottom: 18px;
+  left: 12px;
+  font-size: 56px; /* emoji sizing */
+  display: block !important; /* override older rules that hide it */
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0.95;
+  transition: transform 0.15s linear, left 0.12s linear;
+  line-height: 1;
+}
+
+/* Make sure the site remains very simple on small screens */
+@media (max-width: 480px) {
+  h1 { font-size: 2rem; }
+  #hiker { font-size: 44px; bottom: 10px; left: 8px; }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  #hiker { transition: none; }
+}
+
+/* -------------------
+   Gliding background icons (subtle, decorative)
+   ------------------- */
+.glider-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 3; /* sit above main content so gliders are visible */
+}
+
+.glider {
+  position: absolute;
+  width: auto;
+  height: auto;
+  opacity: 0.22; /* increased for visibility */
+  will-change: transform, left, opacity;
+  transform: translateY(0);
+  display: inline-block;
+  font-size: calc(var(--size, 56px) * 2);
+  line-height: 1;
+  text-shadow: 0 2px 6px rgba(15,30,15,0.06);
+} 
+.glider svg { width: auto; height: calc(var(--size,56px) * 2); display: block; }
+.glider-emoji { display: inline-block; line-height: 1; }
+
+/* Directional glide; duration set inline via style to vary timings */
+.glide-right { animation: glideRight var(--duration, 14s) linear forwards; }
+.glide-left  { animation: glideLeft  var(--duration, 14s) linear forwards; }
+
+@keyframes glideRight {
+  0% { transform: translateX(-18vw) translateY(var(--start-y)); opacity: 0; }
+  6% { opacity: 0.12; }
+  96% { opacity: 0.12; }
+  100% { transform: translateX(120vw) translateY(calc(var(--start-y) + var(--drift, 8px))); opacity: 0; }
+}
+@keyframes glideLeft {
+  0% { transform: translateX(120vw) translateY(var(--start-y)); opacity: 0; }
+  6% { opacity: 0.12; }
+  96% { opacity: 0.12; }
+  100% { transform: translateX(-18vw) translateY(calc(var(--start-y) + var(--drift, -8px))); opacity: 0; }
+}
+
+/* Keep things unobtrusive on very small screens */
+@media (max-width: 480px) {
+  .glider { font-size: 72px; opacity: 0.10; }
+}
+
+/* Honor reduced-motion: hide animated icons (they are decorative) */
+@media (prefers-reduced-motion: reduce) {
+  .glider-container { display: none !important; }
+}
