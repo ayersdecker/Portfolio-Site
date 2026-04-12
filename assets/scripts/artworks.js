@@ -146,7 +146,16 @@
     const rowUnit = parseFloat(style.getPropertyValue('--tile-row')) || 8;
     const gap = parseFloat(style.gap) || 8;
     // Detect actual column count from the computed grid
-    const totalCols = style.gridTemplateColumns.split(' ').length || 5;
+    const totalCols = style.gridTemplateColumns.trim().split(/\s+/).length || 5;
+
+    // On mobile (2 cols), CSS handles layout — clear any inline spans and bail
+    if (totalCols <= 2) {
+      grid.querySelectorAll('.gallery-item').forEach(function (item) {
+        item.style.gridColumnEnd = '';
+        item.style.gridRowEnd = '';
+      });
+      return;
+    }
 
     grid.querySelectorAll('.gallery-item').forEach(function (item) {
       const image = item.querySelector('.gallery-image');

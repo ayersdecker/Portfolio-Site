@@ -758,13 +758,15 @@ a:hover {
 @media (max-width: 720px) {
   .gallery-grid {
     grid-template-columns: repeat(2, 1fr);
+    grid-auto-rows: auto;
     --tile-gap: 6px;
     --tile-row: 7px;
   }
 
-  /* Force exactly 2 per row regardless of JS-calculated spans */
+  /* Disable JS masonry spans on mobile — 2 per row, auto height */
   .gallery-item {
     grid-column: span 1 !important;
+    grid-row: auto !important;
   }
 
   .glow-2,
