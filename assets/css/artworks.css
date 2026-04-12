@@ -319,9 +319,14 @@ main {
 
 /* ---- GALLERY GRID ---- */
 .gallery-grid {
+  --tile-gap: 8px;
+  --tile-row: 8px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 2px;
+  grid-auto-flow: dense;
+  grid-template-columns: repeat(5, 1fr);
+  grid-auto-rows: var(--tile-row);
+  gap: var(--tile-gap);
+  align-items: start;
 }
 
 .gallery-item {
@@ -330,9 +335,6 @@ main {
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  contain: layout paint;
-  content-visibility: auto;
-  contain-intrinsic-size: 280px 210px;
 }
 
 .gallery-item::before {
@@ -358,8 +360,8 @@ main {
 .gallery-item img {
   display: block;
   width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+  height: auto;
+  object-fit: contain;
   transition: opacity 0.4s, filter 0.4s;
   filter: grayscale(0.1) brightness(0.85);
   will-change: transform, opacity, filter;
@@ -747,9 +749,22 @@ a:hover {
   background: var(--accent);
 }
 
+@media (max-width: 900px) {
+  .gallery-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
 @media (max-width: 720px) {
   .gallery-grid {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
+    --tile-gap: 6px;
+    --tile-row: 7px;
+  }
+
+  /* Force exactly 2 per row regardless of JS-calculated spans */
+  .gallery-item {
+    grid-column: span 1 !important;
   }
 
   .glow-2,

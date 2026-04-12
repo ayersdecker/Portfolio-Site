@@ -133,6 +133,46 @@
     return { openLightbox: openLightbox };
   }
 
+  function getColumnSpanFromAspect(aspectRatio, totalCols) {
+    // On 2-column grids (mobile) every item takes exactly 1 column → 2 per row
+    if (totalCols <= 2) return 1;
+    // Keep all images within 1-2 columns so no single photo dominates
+    if (aspectRatio >= 1.2) return 2;
+    return 1;
+  }
+
+  function layoutGalleryTiles(grid) {
+    const style = getComputedStyle(grid);
+    const rowUnit = parseFloat(style.getPropertyValue('--tile-row')) || 8;
+    const gap = parseFloat(style.gap) || 8;
+    // Detect actual column count from the computed grid
+    const totalCols = style.gridTemplateColumns.split(' ').length || 5;
+
+    grid.querySelectorAll('.gallery-item').forEach(function (item) {
+      const image = item.querySelector('.gallery-image');
+      if (!image || !image.naturalWidth || !image.naturalHeight) return;
+
+      // Use rendered offsetHeight/offsetWidth when available so EXIF-rotated
+      // portrait photos are measured correctly rather than as landscape.
+      var aspect;
+      if (image.offsetWidth > 0 && image.offsetHeight > 0) {
+        aspect = image.offsetWidth / image.offsetHeight;
+      } else {
+        aspect = image.naturalWidth / image.naturalHeight;
+      }
+
+      const colSpan = getColumnSpanFromAspect(aspect, totalCols);
+      item.style.gridColumnEnd = 'span ' + colSpan;
+
+      const itemWidth = item.getBoundingClientRect().width;
+      if (!itemWidth) return;
+
+      const itemHeight = itemWidth / aspect;
+      const rowSpan = Math.max(1, Math.ceil((itemHeight + gap) / (rowUnit + gap)));
+      item.style.gridRowEnd = 'span ' + rowSpan;
+    });
+  }
+
   function renderGallery() {
     const grid = document.querySelector('.gallery-grid');
     if (!grid) return;
@@ -164,6 +204,7 @@
       image.addEventListener('load', function () {
         image.classList.remove('is-loading');
         image.classList.add('is-loaded');
+        layoutGalleryTiles(grid);
       });
 
       image.addEventListener('error', function () {
@@ -204,6 +245,16 @@
 
       grid.appendChild(item);
     });
+
+    layoutGalleryTiles(grid);
+
+    var resizeTimer;
+    window.addEventListener('resize', function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function () {
+        layoutGalleryTiles(grid);
+      }, 100);
+    }, { passive: true });
   }
 
   renderGallery();
