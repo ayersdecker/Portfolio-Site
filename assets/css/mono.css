@@ -43,7 +43,7 @@
 ::-webkit-scrollbar-thumb { background: #2A2A2A; border-radius: 2px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--white); }
 
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
 
 body {
   font-family: var(--font-body);
@@ -605,6 +605,9 @@ footer.section {
 
 /* ---- RESPONSIVE ---- */
 @media (max-width: 560px) {
+  #morphic-grid {
+    display: none;
+  }
   .nav-toggle {
     display: flex;
   }
