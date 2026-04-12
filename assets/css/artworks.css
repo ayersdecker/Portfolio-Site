@@ -82,16 +82,18 @@ body::after {
   inset: 0;
   z-index: -1;
   pointer-events: none;
+  will-change: transform;
 }
 
 /* ---- AMBIENT GLOW ---- */
 .ambient-glow {
   position: fixed;
   border-radius: 50%;
-  filter: blur(120px);
+  filter: blur(90px);
   pointer-events: none;
   z-index: -1;
   opacity: 0.35;
+  will-change: transform;
 }
 
 .glow-1 {
@@ -328,6 +330,9 @@ main {
   overflow: hidden;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  contain: layout paint;
+  content-visibility: auto;
+  contain-intrinsic-size: 280px 210px;
 }
 
 .gallery-item::before {
@@ -357,10 +362,33 @@ main {
   object-fit: cover;
   transition: opacity 0.4s, filter 0.4s;
   filter: grayscale(0.1) brightness(0.85);
+  will-change: transform, opacity, filter;
+}
+
+.gallery-item .gallery-image.is-loading {
+  opacity: 0.65;
+  filter: blur(10px) saturate(0.8) brightness(0.65);
+  transform: scale(1.03);
+}
+
+.gallery-item .gallery-image.is-loaded {
+  opacity: 1;
+  filter: grayscale(0.1) brightness(0.85);
+  transform: none;
+}
+
+.gallery-item .gallery-image.is-error {
+  opacity: 0.2;
+  filter: grayscale(1);
 }
 
 .gallery-item:hover img {
   filter: grayscale(0) brightness(1);
+}
+
+.gallery-item::selection,
+.gallery-item *::selection {
+  background: transparent;
 }
 
 /* Image overlay */
@@ -448,6 +476,113 @@ main {
   text-transform: uppercase;
   color: var(--text-dim);
   opacity: 0.5;
+}
+
+/* ---- LIGHTBOX ---- */
+body.lightbox-open {
+  overflow: hidden;
+}
+
+.gallery-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1200;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(0, 168, 255, 0.1), transparent 45%),
+    radial-gradient(circle at 85% 80%, rgba(0, 102, 204, 0.12), transparent 50%),
+    rgba(2, 4, 12, 0.86);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: grid;
+  place-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.gallery-lightbox.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox-image {
+  max-width: min(96vw, 1400px);
+  max-height: 84vh;
+  width: auto;
+  height: auto;
+  border: 2px solid rgba(0, 168, 255, 0.85);
+  outline: 1px solid rgba(232, 232, 236, 0.18);
+  outline-offset: 6px;
+  box-shadow:
+    0 18px 42px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(0, 168, 255, 0.25),
+    0 0 40px rgba(0, 168, 255, 0.25);
+}
+
+.lightbox-caption {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text);
+  text-align: center;
+}
+
+.lightbox-close {
+  position: fixed;
+  top: 1.1rem;
+  right: 1.1rem;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(0, 168, 255, 0.65);
+  background:
+    linear-gradient(135deg, rgba(0, 168, 255, 0.22), rgba(5, 8, 20, 0.95));
+  color: var(--accent);
+  font-family: var(--font-display);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  clip-path: polygon(12% 0, 100% 0, 100% 88%, 88% 100%, 0 100%, 0 12%);
+  box-shadow: 0 0 14px rgba(0, 168, 255, 0.25);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+.lightbox-close::before,
+.lightbox-close::after {
+  content: '';
+  position: absolute;
+  background: rgba(0, 168, 255, 0.45);
+}
+
+.lightbox-close::before {
+  width: 10px;
+  height: 1px;
+  top: 6px;
+  left: 6px;
+}
+
+.lightbox-close::after {
+  width: 1px;
+  height: 10px;
+  top: 6px;
+  left: 6px;
+}
+
+.lightbox-close span {
+  transform: translateX(1px);
+}
+
+.lightbox-close:hover {
+  border-color: var(--accent-bright);
+  box-shadow: 0 0 22px rgba(0, 168, 255, 0.4);
+  transform: scale(1.03);
 }
 
 /* ---- DIVIDER ---- */
@@ -569,6 +704,7 @@ a:hover {
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.8s ease, transform 0.8s ease;
+  will-change: opacity, transform;
 }
 
 .fade-in.visible {
@@ -614,6 +750,33 @@ a:hover {
 @media (max-width: 720px) {
   .gallery-grid {
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+
+  .glow-2,
+  .glow-3 {
+    display: none;
+  }
+
+  .ambient-glow {
+    filter: blur(70px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient-glow {
+    animation: none;
+    transform: none !important;
+  }
+
+  .fade-in,
+  .gallery-item,
+  .gallery-overlay,
+  .gallery-item img {
+    transition: none;
+  }
+
+  #morphic-grid {
+    display: none;
   }
 }
 
