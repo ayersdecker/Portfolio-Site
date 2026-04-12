@@ -43,7 +43,7 @@
 ::-webkit-scrollbar-thumb { background: #2A2A2A; border-radius: 2px; }
 ::-webkit-scrollbar-thumb:hover { background: var(--white); }
 
-html { scroll-behavior: smooth; overflow-x: hidden; }
+html { scroll-behavior: smooth; overflow-x: hidden; overscroll-behavior-x: none; }
 
 body {
   font-family: var(--font-body);
@@ -625,12 +625,15 @@ footer.section {
     padding: 5rem 2rem 2rem;
     gap: 1.75rem;
     transform: translateX(100%);
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, visibility 0s 0.3s;
     border-left: 1px solid var(--border-mid);
     z-index: 550;
+    visibility: hidden;
   }
   .site-nav.open {
     transform: translateX(0);
+    visibility: visible;
+    transition: transform 0.3s ease, visibility 0s 0s;
   }
   .site-nav a {
     font-size: 0.7rem;
