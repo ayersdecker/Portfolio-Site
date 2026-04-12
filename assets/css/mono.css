@@ -365,12 +365,24 @@ a:hover {
   position: relative;
 }
 
-.resume-viewer iframe {
-  display: block;
+.resume-iframe-wrap {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
   width: 100%;
   height: 80vh;
   min-height: 600px;
+}
+
+.resume-viewer iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 600px;
   border: none;
+}
+
+.resume-mobile-fallback {
+  display: none;
 }
 
 .resume-toolbar {
@@ -629,9 +641,45 @@ footer.section {
   .section-label {
     margin-bottom: 1.25rem;
   }
-  .resume-viewer iframe {
-    height: 60vh;
-    min-height: 400px;
+  .resume-iframe-wrap {
+    display: none;
+  }
+  .resume-mobile-fallback {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2.5rem 1rem;
+    background: var(--bg-panel);
+    border-top: 1px solid var(--border-mid);
+  }
+  .rmf-label {
+    font-family: var(--font-mono);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .rmf-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+  }
+  .rmf-actions a {
+    font-family: var(--font-display);
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-bright);
+    border: 1px solid var(--border-mid);
+    padding: 0.6rem 1.4rem;
+    text-decoration: none;
+    transition: border-color 0.3s, color 0.3s;
+  }
+  .rmf-actions a:hover {
+    border-color: var(--white);
   }
   .resume-toolbar {
     flex-direction: column;

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 134 70">
+  <!-- D: solid white shapes forming the letter body -->
+  <path d="M 60 5 L 30 5 L 30 35 C 37.96 35 45.59 31.84 51.21 26.21 C 56.84 20.59 60 12.96 60 5 Z" transform="rotate(-90,45,20)" fill="#F0F0EC"/>
+  <path d="M 30 5 L 0 5 L 0 35 C 16.57 35 30 21.57 30 5 Z" transform="rotate(90,15,20)" fill="#F0F0EC"/>
+  <path d="M 30 35 L 0 35 L 0 65 C 16.57 65 30 51.57 30 35 Z" transform="rotate(-180,15,50)" fill="#F0F0EC"/>
+  <!-- D: green outline accent -->
+  <path d="M 60 35 L 30 35 L 30 65 C 37.96 65 45.59 61.84 51.21 56.21 C 56.84 50.59 60 42.96 60 35 Z" fill="none" stroke="#39FF14" stroke-width="2.5" stroke-linejoin="round"/>
+
+  <!-- A: solid white shapes forming the letter body -->
+  <path d="M 98 5 L 68 5 L 68 35 C 84.57 35 98 21.57 98 5 Z" transform="rotate(-180,83,20)" fill="#F0F0EC"/>
+  <path d="M 98 35 L 68 35 L 68 65 C 84.57 65 98 51.57 98 35 Z" fill="#F0F0EC"/>
+  <path d="M 128 35 L 98 35 L 98 65 C 114.57 65 128 51.57 128 35 Z" transform="rotate(90,113,50)" fill="#F0F0EC"/>
+  <!-- A: red outline accent -->
+  <path d="M 128 5 L 98 5 L 98 35 C 114.57 35 128 21.57 128 5 Z" transform="rotate(-90,113,20)" fill="none" stroke="#E02020" stroke-width="2.5" stroke-linejoin="round"/>
+</svg>
