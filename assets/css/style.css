@@ -1,51 +1,32 @@
 /* ============================================
-   FOUNDRY THEME — DECKER AYERS PORTFOLIO
-   Inspired by Destiny foundry logos, Marathon,
-   and sci-fi industrial aesthetics
-   ============================================ */
+  MONOCHROME THEME — DECKER AYERS PORTFOLIO
+  Sleek black-and-white system with restrained motion
+  ============================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Rajdhani:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&display=swap');
 
 :root {
-  --bg:          #08080A;
-  --bg-panel:    #0E0E12;
-  --bg-surface:  #14141A;
-  --bg-card:     #1A1A22;
-  --charcoal:    #2C2C2A;
+  --bg:          #050505;
+  --bg-panel:    #0d0d0d;
+  --bg-surface:  #141414;
+  --bg-card:     #1b1b1b;
+  --charcoal:    #2f2f2f;
 
-  --red:         #E02020;
-  --red-dim:     rgba(224, 32, 32, 0.12);
-  --red-glow:    0 0 20px rgba(224, 32, 32, 0.4);
-  --red-bright:  #FF3333;
+  --white:       #f5f5f2;
+  --text:        #d2d2ce;
+  --text-bright: #ffffff;
+  --text-dim:    #8a8a86;
+  --border:      #232323;
+  --border-mid:  #393939;
 
-  --neon-green:  #39FF14;
-  --neon-green-dim: rgba(57, 255, 20, 0.08);
-  --neon-green-glow: 0 0 14px rgba(57, 255, 20, 0.35);
+  --accent:      #f5f5f2;
+  --accent-dim:  rgba(245, 245, 242, 0.08);
+  --accent-glow: 0 0 18px rgba(255, 255, 255, 0.12);
+  --accent-bright: #ffffff;
 
-  --neon-blue:   #00D4FF;
-  --neon-blue-dim: rgba(0, 212, 255, 0.08);
-  --neon-blue-glow: 0 0 14px rgba(0, 212, 255, 0.35);
-
-  --teal:        #2EDB9E;
-  --teal-dim:    rgba(46, 219, 158, 0.08);
-  --teal-glow:   0 0 12px rgba(46, 219, 158, 0.3);
-
-  --white:       #F0F0EC;
-  --text:        #B8B8B4;
-  --text-bright: #F0F0EC;
-  --text-dim:    #707078;
-  --border:      #1C1C22;
-  --border-mid:  #2A2A32;
-
-  /* Aliases: primary = red */
-  --accent:      var(--red);
-  --accent-dim:  var(--red-dim);
-  --accent-glow: var(--red-glow);
-  --accent-bright: var(--red-bright);
-
-  --font-display: 'Orbitron', sans-serif;
-  --font-body:    'Rajdhani', sans-serif;
-  --font-mono:    'Share Tech Mono', 'Courier New', monospace;
+  --font-display: Tahoma, 'Trebuchet MS', 'Arial Narrow', sans-serif;
+  --font-body:    Tahoma, Geneva, Verdana, sans-serif;
+  --font-mono:    'IBM Plex Mono', 'Courier New', monospace;
   --spacing:     clamp(1.5rem, 5vw, 3rem);
 }
 
@@ -69,12 +50,16 @@ html {
 
 body {
   font-family: var(--font-body);
-  background: var(--bg);
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.06), transparent 30%),
+    radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.04), transparent 28%),
+    linear-gradient(180deg, #050505 0%, #0b0b0b 45%, #060606 100%);
   color: var(--text);
   min-height: 100vh;
-  line-height: 1.7;
-  font-size: 1rem;
+  line-height: 1.75;
+  font-size: 1.02rem;
   font-weight: 400;
+  letter-spacing: 0.01em;
   overflow-x: hidden;
   position: relative;
 }
@@ -88,8 +73,8 @@ body::after {
     0deg,
     transparent,
     transparent 2px,
-    rgba(0, 0, 0, 0.03) 2px,
-    rgba(0, 0, 0, 0.03) 4px
+    rgba(255, 255, 255, 0.012) 2px,
+    rgba(255, 255, 255, 0.012) 4px
   );
   pointer-events: none;
   z-index: 1000;
@@ -107,16 +92,16 @@ body::after {
 .ambient-glow {
   position: fixed;
   border-radius: 50%;
-  filter: blur(120px);
+  filter: blur(140px);
   pointer-events: none;
   z-index: -1;
-  opacity: 0.4;
+  opacity: 0.28;
 }
 
 .ambient-glow.glow-red {
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(224,32,32,0.12), transparent 70%);
+  background: radial-gradient(circle, rgba(255,255,255,0.08), transparent 70%);
   top: -100px;
   right: -150px;
   animation: glowPulse 8s ease-in-out infinite;
@@ -125,7 +110,7 @@ body::after {
 .ambient-glow.glow-green {
   width: 350px;
   height: 350px;
-  background: radial-gradient(circle, rgba(57,255,20,0.06), transparent 70%);
+  background: radial-gradient(circle, rgba(255,255,255,0.05), transparent 70%);
   top: 40%;
   left: -100px;
   animation: glowPulse 12s ease-in-out infinite reverse;
@@ -134,7 +119,7 @@ body::after {
 .ambient-glow.glow-blue {
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, rgba(0,212,255,0.06), transparent 70%);
+  background: radial-gradient(circle, rgba(255,255,255,0.04), transparent 70%);
   bottom: 10%;
   right: -80px;
   animation: glowPulse 10s ease-in-out infinite;
@@ -184,7 +169,7 @@ body::after {
 
 .logo-link:hover {
   opacity: 1;
-  filter: drop-shadow(0 0 8px rgba(224,32,32,0.5));
+  filter: drop-shadow(0 3px 8px rgba(0,0,0,0.45));
 }
 
 .logo-link svg {
@@ -203,9 +188,9 @@ body::after {
   color: var(--text-dim);
   text-decoration: none;
   font-family: var(--font-display);
-  font-size: 0.65rem;
-  font-weight: 500;
-  letter-spacing: 0.25em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   transition: color 0.3s, text-shadow 0.3s;
   white-space: nowrap;
@@ -225,7 +210,7 @@ body::after {
 
 .site-nav a:hover {
   color: var(--accent);
-  text-shadow: 0 0 10px rgba(224,32,32,0.3);
+  text-shadow: 0 0 10px rgba(255,255,255,0.15);
 }
 
 .site-nav a:hover::before {
@@ -242,56 +227,13 @@ main {
 /* ---- SECTIONS ---- */
 .section {
   padding: 4rem 0;
-  border-bottom: 1px solid var(--border);
   position: relative;
-}
-
-.section:last-child {
-  border-bottom: none;
 }
 
 /* Section label */
 .section-label {
   font-family: var(--font-display);
-  font-size: 0.6rem;
-  font-weight: 700;
-  letter-spacing: 0.3em;
-  color: var(--accent);
-  text-transform: uppercase;
-  margin-bottom: 2rem;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.section-label::before {
-  content: '';
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  background: var(--accent);
-  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-  flex-shrink: 0;
-  animation: diamondPulse 2s ease-in-out infinite;
-}
-
-.section-label::after {
-  content: '';
-  display: inline-block;
-  flex: 1;
-  height: 1px;
-  background: linear-gradient(90deg, var(--border-mid), transparent);
-}
-
-@keyframes diamondPulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.4; }
-}
-
-/* ---- HERO ---- */
-#home {
-  padding-top: 6rem;
-  padding-bottom: 5rem;
+  font-size: 0.68rem;
   position: relative;
 }
 
@@ -324,14 +266,10 @@ main {
 #home h3 {
   font-family: var(--font-mono);
   font-size: 0.85rem;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.12em;
   color: var(--text-dim);
   text-transform: uppercase;
   font-weight: normal;
-}
-
-#home h3 .bracket {
-  color: var(--neon-green);
 }
 
 /* Chevron decoration */
@@ -340,16 +278,17 @@ main {
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-  opacity: 0.06;
+  opacity: 0.09;
+  filter: grayscale(1) contrast(1.1);
   pointer-events: none;
 }
 
 /* ---- HEADINGS ---- */
 h2 {
   font-family: var(--font-display);
-  font-size: 1.1rem;
+  font-size: 1rem;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.12em;
   color: var(--text-bright);
   margin-bottom: 1.5rem;
   font-weight: 700;
@@ -359,8 +298,8 @@ p {
   margin-bottom: 1rem;
   color: var(--text);
   line-height: 1.85;
-  font-weight: 300;
-  font-size: 1.05rem;
+  font-weight: 400;
+  font-size: 1.02rem;
 }
 
 /* ---- LINKS ---- */
@@ -383,9 +322,9 @@ a:hover {
   color: var(--accent);
   padding: 0.65rem 1.75rem;
   font-family: var(--font-display);
-  font-size: 0.65rem;
+  font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.25em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   text-decoration: none;
   transition: all 0.3s ease;
@@ -429,6 +368,7 @@ a:hover {
   border-left: 2px solid var(--border-mid);
   padding: 1rem 0 1rem 1.5rem;
   margin-bottom: 0.5rem;
+  cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
 }
@@ -469,52 +409,35 @@ a:hover {
   transition: color 0.3s, text-shadow 0.3s;
 }
 
+.project-entry .project-name a::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
 .project-entry:hover .project-name a {
-  text-shadow: 0 0 10px rgba(224,32,32,0.3);
+  text-shadow: 0 0 10px rgba(255,255,255,0.12);
 }
 
 .project-entry .project-desc {
   font-size: 0.95rem;
   color: var(--text);
   line-height: 1.7;
-  font-weight: 300;
+  font-weight: 400;
 }
 
 /* ---- PROJECT TAGS ---- */
 .project-tag {
   display: inline-block;
   font-family: var(--font-mono);
-  font-size: 0.6rem;
+  font-size: 0.64rem;
   padding: 0.15rem 0.5rem;
   border: 1px solid var(--border-mid);
-  color: var(--text-dim);
+  color: var(--text);
   letter-spacing: 0.1em;
   text-transform: uppercase;
   margin-right: 0.3rem;
   margin-top: 0.5rem;
-}
-
-/* ---- GEOMETRIC DIVIDER ---- */
-.geo-divider {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 2rem 0;
-  opacity: 0.15;
-}
-
-.geo-divider .diamond {
-  width: 6px;
-  height: 6px;
-  background: var(--accent);
-  transform: rotate(45deg);
-}
-
-.geo-divider .line {
-  width: 60px;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, var(--accent), transparent);
 }
 
 /* ---- STAT GRID ---- */
@@ -528,13 +451,17 @@ a:hover {
 
 .stat-item {
   background: var(--bg-panel);
+  border: 1px solid transparent;
   padding: 1.25rem;
   text-align: center;
-  transition: background 0.3s;
+  transition: background 0.3s, border-color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
 
 .stat-item:hover {
   background: var(--bg-surface);
+  border-color: var(--border-mid);
+  transform: translateY(-2px);
+  box-shadow: var(--accent-glow);
 }
 
 .stat-value {
@@ -549,8 +476,8 @@ a:hover {
 
 .stat-label {
   font-family: var(--font-mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.2em;
+  font-size: 0.64rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--text-dim);
 }
@@ -589,33 +516,6 @@ a:hover {
 .slate-divider::after {
   bottom: 0;
   background: linear-gradient(to top, var(--bg), transparent);
-}
-
-/* ---- DOT MATRIX PATTERN ---- */
-.dot-matrix {
-  display: grid;
-  grid-template-columns: repeat(7, 6px);
-  gap: 6px;
-  justify-content: center;
-  padding: 1rem 0;
-}
-
-.dot-matrix .dot {
-  width: 4px;
-  height: 4px;
-  border-radius: 50%;
-  background: var(--accent);
-  opacity: 0.3;
-  animation: dotFade 3s ease-in-out infinite;
-}
-
-.dot-matrix .dot:nth-child(odd) { animation-delay: 0.5s; }
-.dot-matrix .dot:nth-child(3n) { animation-delay: 1s; }
-.dot-matrix .dot:nth-child(5n) { animation-delay: 1.5s; }
-
-@keyframes dotFade {
-  0%, 100% { opacity: 0.15; }
-  50% { opacity: 0.6; }
 }
 
 /* ---- CONTACT FORM ---- */
@@ -744,39 +644,96 @@ footer.section {
   gap: 1rem;
 }
 
-.footer-left {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
-
-.footer-left::before {
-  content: '';
-  width: 18px;
-  height: 1px;
-  background: var(--accent);
-  flex-shrink: 0;
-  opacity: 0.5;
-}
-
 .social-links {
   display: flex;
-  gap: 1.25rem;
+  gap: 1rem;
 }
 
 .social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
   color: var(--text-dim);
   transition: color 0.3s, transform 0.3s;
 }
 
 .social-links a:hover {
-  color: var(--neon-green);
+  color: var(--accent);
   transform: translateY(-2px);
 }
 
 .social-links svg {
-  width: 18px;
-  height: 18px;
+  width: 26px;
+  height: 26px;
+}
+
+/* ---- THEME TOGGLE ---- */
+.theme-toggle {
+  margin-left: auto;
+  border: 1px solid var(--border-mid);
+  background: var(--bg-panel);
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.65rem 1.1rem;
+  cursor: pointer;
+  transition: border-color 0.25s ease, color 0.25s ease, background 0.25s ease;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.theme-toggle[aria-pressed='true'] {
+  border-color: var(--accent);
+  background: var(--accent-dim);
+  color: var(--accent);
+}
+
+/* ---- LIGHT THEME ---- */
+body.theme-light {
+  --bg: #f4f4f0;
+  --bg-panel: #ffffff;
+  --bg-surface: #f0f0eb;
+  --bg-card: #ffffff;
+  --charcoal: #b5b5b0;
+
+  --white: #0f0f0f;
+  --text: #20201d;
+  --text-bright: #000000;
+  --text-dim: #595954;
+  --border: #d9d9d2;
+  --border-mid: #bdbdb6;
+
+  --accent: #111111;
+  --accent-dim: rgba(17, 17, 17, 0.08);
+  --accent-glow: 0 0 14px rgba(17, 17, 17, 0.12);
+  --accent-bright: #000000;
+
+  background:
+    radial-gradient(circle at top left, rgba(0, 0, 0, 0.04), transparent 32%),
+    radial-gradient(circle at bottom right, rgba(0, 0, 0, 0.03), transparent 30%),
+    linear-gradient(180deg, #f4f4f0 0%, #ecece8 48%, #f7f7f4 100%);
+}
+
+body.theme-light::after {
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.02) 2px,
+    rgba(0, 0, 0, 0.02) 4px
+  );
+}
+
+body.theme-light .site-header {
+  background: rgba(244, 244, 240, 0.92);
 }
 
 /* ---- FADE-IN ANIMATION ---- */
@@ -875,19 +832,6 @@ footer.section {
   100% { transform: translate(0); }
 }
 
-/* ---- TYPING CURSOR ---- */
-.typing-cursor::after {
-  content: '\2588';
-  color: var(--neon-green);
-  animation: blink 0.8s step-end infinite;
-  margin-left: 2px;
-  font-weight: 100;
-}
-
-@keyframes blink {
-  50% { opacity: 0; }
-}
-
 /* ---- PERFORATED PATTERN ---- */
 .perf-pattern {
   background-image: radial-gradient(circle, var(--text-dim) 0.5px, transparent 0.5px);
@@ -913,7 +857,7 @@ footer.section {
   left: 0;
   height: 100%;
   width: 40%;
-  background: linear-gradient(90deg, transparent, var(--accent), var(--neon-blue), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), var(--accent), transparent);
   animation: loadingSweep 2s ease-in-out infinite;
 }
 
@@ -949,15 +893,15 @@ footer.section {
   left: 0;
   width: 3px;
   height: 100%;
-  background: var(--neon-green);
+  background: var(--accent);
   transform: scaleY(0);
   transition: transform 0.3s ease;
 }
 
 .skill-tag:hover {
-  border-color: var(--neon-green);
-  color: var(--neon-green);
-  background: var(--neon-green-dim);
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-dim);
 }
 
 .skill-tag:hover::before {
@@ -1033,6 +977,10 @@ footer.section {
   .site-nav a {
     font-size: 0.7rem;
   }
+  .site-nav .theme-toggle {
+    margin-left: 0;
+    margin-top: 0.25rem;
+  }
   .logo-link svg {
     width: 60px;
   }
@@ -1054,9 +1002,6 @@ footer.section {
   }
   .slate-divider {
     height: 48px;
-  }
-  .geo-divider {
-    padding: 1.25rem 0;
   }
   .perf-pattern {
     height: 36px;

@@ -29,24 +29,39 @@
   // =========================================
   // GALLERY DATA: Auto titles from filenames
   // =========================================
-  const artworkFiles = [
-    'PXL_20221101_112943836.jpg',
-    'PXL_20230124_234403665.jpg',
-    'PXL_20230127_003327099.jpg',
-    'PXL_20230201_003729781.jpg',
-    'PXL_20230214_235113515.MP.jpg',
-    'PXL_20230328_214737045.jpg',
-    'PXL_20230404_233541011.jpg',
-    'PXL_20251028_055339225.jpg',
-    'PXL_20251215_213331443.jpg',
-    'PXL_20251218_173433744.MP.jpg',
-    'PXL_20251218_201050019.jpg',
-    'PXL_20260211_034856974.RAW-01.jpg',
-    'PXL_20260327_192647205.jpg',
-    'PXL_20260327_213407150.jpg',
-    'PXL_20260328_081716985.jpg',
-    'PXL_20260328_194247534.jpg'
+  const artworkEntries = [
+    { fileName: 'Barb.jpg', createdAt: '2026-06-12T00:55:38' },
+    { fileName: 'FLY_KITE.jpg', createdAt: '2026-06-12T00:55:38' },
+    { fileName: 'Foggy_Witch.jpg', createdAt: '2026-06-12T00:55:38' },
+    { fileName: 'Moonshot.jpg', createdAt: '2026-06-12T00:55:38' },
+    { fileName: 'Mountainside.jpg', createdAt: '2026-06-12T00:55:38' },
+    { fileName: 'Mushroom.jpg', createdAt: '2026-06-12T00:55:39' },
+    { fileName: 'OCEANSIDE.jpg', createdAt: '2026-06-12T00:55:38' },
+    { fileName: 'PXL_20221101_112943836.jpg' },
+    { fileName: 'PXL_20230124_234403665.jpg' },
+    { fileName: 'PXL_20230127_003327099.jpg' },
+    { fileName: 'PXL_20230201_003729781.jpg' },
+    { fileName: 'PXL_20230214_235113515.MP.jpg' },
+    { fileName: 'PXL_20230328_214737045.jpg' },
+    { fileName: 'PXL_20230404_233541011.jpg' },
+    { fileName: 'PXL_20251028_055339225.jpg' },
+    { fileName: 'PXL_20251215_213331443.jpg' },
+    { fileName: 'PXL_20251218_173433744.MP.jpg' },
+    { fileName: 'PXL_20251218_201050019.jpg' },
+    { fileName: 'PXL_20260211_034856974.RAW-01.jpg' },
+    { fileName: 'PXL_20260327_192647205.jpg' },
+    { fileName: 'PXL_20260327_213407150.jpg' },
+    { fileName: 'PXL_20260328_081716985.jpg' },
+    { fileName: 'PXL_20260328_194247534.jpg' }
   ];
+
+  function getArtworkTimestamp(entry) {
+    if (entry.createdAt) {
+      return new Date(entry.createdAt).getTime();
+    }
+
+    return getTimestampFromName(entry.fileName);
+  }
 
   function getTimestampFromName(fileName) {
     const match = fileName.match(/(\d{8})_(\d{6})/);
@@ -64,10 +79,21 @@
     return new Date(year, month, day, hours, minutes, seconds).getTime();
   }
 
+  function formatNamedTitle(fileName) {
+    const baseName = fileName.replace(/\.[^.]+$/, '');
+    const words = baseName.replace(/[_-]+/g, ' ').toLowerCase().split(/\s+/).filter(Boolean);
+
+    if (!words.length) return fileName;
+
+    return words.map(function (word) {
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    }).join(' ');
+  }
+
   function formatPhotoTitle(fileName, fallbackIndex) {
     const ts = getTimestampFromName(fileName);
     if (!Number.isFinite(ts) || ts <= 0) {
-      return 'Artwork ' + String(fallbackIndex + 1).padStart(2, '0');
+      return formatNamedTitle(fileName) || ('Artwork ' + String(fallbackIndex + 1).padStart(2, '0'));
     }
 
     const date = new Date(ts);
@@ -187,15 +213,24 @@
     if (!grid) return;
     const lightboxController = initGalleryLightbox();
 
-    const sorted = artworkFiles.slice().sort(function (a, b) {
-      const ta = getTimestampFromName(a);
-      const tb = getTimestampFromName(b);
+    const sorted = artworkEntries.slice().sort(function (a, b) {
+      const ta = getArtworkTimestamp(a);
+      const tb = getArtworkTimestamp(b);
+
+      if (ta === Number.MIN_SAFE_INTEGER && tb === Number.MIN_SAFE_INTEGER) {
+        return a.fileName.localeCompare(b.fileName);
+      }
+
+      if (ta === Number.MIN_SAFE_INTEGER) return 1;
+      if (tb === Number.MIN_SAFE_INTEGER) return -1;
+
       return tb - ta;
     });
 
     grid.innerHTML = '';
 
-    sorted.forEach(function (fileName, index) {
+    sorted.forEach(function (entry, index) {
+      const fileName = entry.fileName;
       const item = document.createElement('div');
       item.className = 'gallery-item fade-in';
       item.setAttribute('data-index', String(index + 1).padStart(3, '0'));

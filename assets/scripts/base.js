@@ -28,7 +28,7 @@
   }
 
   // =========================================
-  // MORPHIC GRID — mouse-reactive background
+  // MORPHIC GRID — mouse-reactive monochrome background
   // =========================================
   (function initMorphicGrid() {
     const canvas = document.getElementById('morphic-grid');
@@ -91,29 +91,21 @@
           const px = bx + offsetX;
           const py = by + offsetY;
 
-          // Color: blend red → green → blue based on distance
-          let red = 224, green = 32, blue = 32; // default red
+          let brightness = 160;
           if (dist < INFLUENCE) {
             const t = 1 - (dist / INFLUENCE);
-            if (t > 0.6) {
-              // Inner ring: neon green
-              red = 57; green = 255; blue = 20;
-            } else if (t > 0.3) {
-              // Mid ring: neon blue
-              red = 0; green = 212; blue = 255;
-            }
-            // Outer ring stays red
+            brightness = 160 + Math.floor(t * 85);
           }
 
           ctx.beginPath();
           ctx.arc(px, py, 1.5, 0, Math.PI * 2);
-          ctx.fillStyle = 'rgba(' + red + ',' + green + ',' + blue + ',' + alpha + ')';
+          ctx.fillStyle = 'rgba(' + brightness + ',' + brightness + ',' + brightness + ',' + alpha + ')';
           ctx.fill();
 
           // Draw connecting lines to neighbors near the mouse
           if (dist < INFLUENCE * 0.85) {
             const lineAlpha = (1 - dist / (INFLUENCE * 0.85)) * 0.15;
-            ctx.strokeStyle = 'rgba(' + red + ',' + green + ',' + blue + ',' + lineAlpha + ')';
+            ctx.strokeStyle = 'rgba(' + brightness + ',' + brightness + ',' + brightness + ',' + lineAlpha + ')';
             ctx.lineWidth = 0.5;
 
             // Right neighbor
