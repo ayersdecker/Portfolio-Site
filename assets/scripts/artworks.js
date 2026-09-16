@@ -52,7 +52,19 @@
     { fileName: 'PXL_20260327_192647205.jpg' },
     { fileName: 'PXL_20260327_213407150.jpg' },
     { fileName: 'PXL_20260328_081716985.jpg' },
-    { fileName: 'PXL_20260328_194247534.jpg' }
+    { fileName: 'PXL_20260328_194247534.jpg' },
+    { fileName: 'Elven_Lady.png' },
+    { fileName: 'PXL_20260726_230131506.jpg' },
+    { fileName: 'PXL_20260726_230140639.jpg' },
+    { fileName: 'PXL_20260731_075738312.jpg' },
+    { fileName: 'PXL_20260802_092906165.jpg' },
+    { fileName: 'PXL_20260814_001402391.jpg' },
+    { fileName: 'PXL_20260814_062710989.jpg' },
+    { fileName: 'PXL_20260830_160403960.jpg' },
+    { fileName: 'PXL_20260830_163143195.jpg' },
+    { fileName: 'PXL_20260831_234337829.jpg' },
+    { fileName: 'PXL_20260906_030609850.jpg' },
+    { fileName: 'PXL_20260909_222326280.jpg' }
   ];
 
   function getArtworkTimestamp(entry) {
