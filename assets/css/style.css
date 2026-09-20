@@ -95,7 +95,7 @@ body::after {
   filter: blur(140px);
   pointer-events: none;
   z-index: -1;
-  opacity: 0.28;
+  opacity: 0.16;
 }
 
 .ambient-glow.glow-red {
@@ -188,9 +188,9 @@ body::after {
   color: var(--text-dim);
   text-decoration: none;
   font-family: var(--font-display);
-  font-size: 0.72rem;
+  font-size: 0.85rem;
   font-weight: 700;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   transition: color 0.3s, text-shadow 0.3s;
   white-space: nowrap;
@@ -233,8 +233,18 @@ main {
 /* Section label */
 .section-label {
   font-family: var(--font-display);
-  font-size: 0.68rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-bottom: 0.5rem;
   position: relative;
+}
+
+/* Divider between sections for clearer navigation */
+.section + .section {
+  border-top: 1px solid var(--border);
 }
 
 .hero-content {
@@ -265,10 +275,10 @@ main {
 
 #home h3 {
   font-family: var(--font-mono);
-  font-size: 0.85rem;
-  letter-spacing: 0.12em;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
   color: var(--text-dim);
-  text-transform: uppercase;
+  text-transform: none;
   font-weight: normal;
 }
 
@@ -278,17 +288,17 @@ main {
   right: 0;
   top: 50%;
   transform: translateY(-50%);
-  opacity: 0.09;
+  opacity: 0.06;
   filter: grayscale(1) contrast(1.1);
   pointer-events: none;
+  z-index: 0;
 }
 
 /* ---- HEADINGS ---- */
 h2 {
   font-family: var(--font-display);
-  font-size: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
+  font-size: 1.6rem;
+  letter-spacing: 0.01em;
   color: var(--text-bright);
   margin-bottom: 1.5rem;
   font-weight: 700;
@@ -322,9 +332,9 @@ a:hover {
   color: var(--accent);
   padding: 0.65rem 1.75rem;
   font-family: var(--font-display);
-  font-size: 0.68rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   text-decoration: none;
   transition: all 0.3s ease;
@@ -364,77 +374,114 @@ a:hover {
 }
 
 /* ---- PROJECTS ---- */
-.project-entry {
-  border-left: 2px solid var(--border-mid);
-  padding: 1rem 0 1rem 1.5rem;
-  margin-bottom: 0.5rem;
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+}
+
+.project-card {
+  border: 1px solid var(--border-mid);
+  background: var(--bg-panel);
+  padding: 1.25rem;
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
+  display: flex;
+  flex-direction: column;
 }
 
-.project-entry::before {
-  content: '';
-  position: absolute;
-  left: -2px;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: var(--accent);
-  transform: scaleY(0);
-  transform-origin: top;
-  transition: transform 0.4s ease;
+.project-card:hover {
+  border-color: var(--accent);
+  background: var(--bg-surface);
+  transform: translateY(-3px);
+  box-shadow: var(--accent-glow);
 }
 
-.project-entry:hover::before {
-  transform: scaleY(1);
-}
-
-.project-entry:hover {
-  border-left-color: transparent;
-  background: linear-gradient(90deg, var(--accent-dim), transparent 50%);
-  padding-left: 2rem;
-}
-
-.project-entry .project-name {
+.project-card .project-name {
   font-family: var(--font-display);
-  font-size: 0.75rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
+  font-size: 1.05rem;
+  letter-spacing: 0.01em;
+  text-transform: none;
   font-weight: 700;
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.5rem;
 }
 
-.project-entry .project-name a {
+.project-card .project-name a {
   transition: color 0.3s, text-shadow 0.3s;
 }
 
-.project-entry .project-name a::after {
+.project-card .project-name a::after {
   content: '';
   position: absolute;
   inset: 0;
 }
 
-.project-entry:hover .project-name a {
+.project-card:hover .project-name a {
   text-shadow: 0 0 10px rgba(255,255,255,0.12);
 }
 
-.project-entry .project-desc {
-  font-size: 0.95rem;
+.project-card .project-desc {
+  font-size: 0.9rem;
   color: var(--text);
-  line-height: 1.7;
+  line-height: 1.65;
   font-weight: 400;
+  flex-grow: 1;
+}
+
+.project-card .project-tags {
+  margin-top: 0.75rem;
+}
+
+/* ---- SHOW MORE DISCLOSURE ---- */
+.project-more summary {
+  list-style: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  padding: 0.65rem 0;
+  transition: color 0.3s;
+}
+
+.project-more summary::-webkit-details-marker {
+  display: none;
+}
+
+.project-more summary::before {
+  content: '+';
+  font-size: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.project-more[open] summary::before {
+  transform: rotate(45deg);
+}
+
+.project-more summary:hover {
+  color: var(--accent);
+}
+
+.project-more .project-grid {
+  margin-top: 0.5rem;
 }
 
 /* ---- PROJECT TAGS ---- */
 .project-tag {
   display: inline-block;
   font-family: var(--font-mono);
-  font-size: 0.64rem;
+  font-size: 0.7rem;
   padding: 0.15rem 0.5rem;
   border: 1px solid var(--border-mid);
   color: var(--text);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   margin-right: 0.3rem;
   margin-top: 0.5rem;
@@ -476,8 +523,8 @@ a:hover {
 
 .stat-label {
   font-family: var(--font-mono);
-  font-size: 0.64rem;
-  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--text-dim);
 }
@@ -528,9 +575,9 @@ a:hover {
 
 .contact-form label {
   font-family: var(--font-display);
-  font-size: 0.6rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.25em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   color: var(--neon-green);
   margin-top: 1.5rem;
@@ -565,9 +612,9 @@ a:hover {
 .contact-form button {
   margin-top: 2rem;
   font-family: var(--font-display);
-  font-size: 0.65rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  letter-spacing: 0.25em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   padding: 0.8rem 2.5rem;
   border: 1px solid var(--accent);
@@ -607,9 +654,9 @@ a:hover {
   color: var(--text-dim);
   text-decoration: none;
   font-family: var(--font-display);
-  font-size: 0.65rem;
+  font-size: 0.8rem;
   font-weight: 700;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
   margin-bottom: 2.5rem;
   transition: color 0.3s;
@@ -636,8 +683,8 @@ footer.section {
   align-items: center;
   justify-content: space-between;
   font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.15em;
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
   color: var(--text-dim);
   text-transform: uppercase;
   flex-wrap: wrap;
@@ -676,9 +723,9 @@ footer.section {
   background: var(--bg-panel);
   color: var(--text);
   font-family: var(--font-display);
-  font-size: 0.62rem;
+  font-size: 0.75rem;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   padding: 0.65rem 1.1rem;
   cursor: pointer;
@@ -876,11 +923,11 @@ body.theme-light .site-header {
 
 .skill-tag {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-size: 0.78rem;
   padding: 0.35rem 0.9rem;
   border: 1px solid var(--border-mid);
   color: var(--text);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.03em;
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
@@ -1012,8 +1059,8 @@ body.theme-light .site-header {
   .action-link {
     margin-top: 1rem;
   }
-  .project-entry {
-    padding: 0.75rem 0 0.75rem 1.25rem;
+  .project-card {
+    padding: 1rem;
   }
 }
 
